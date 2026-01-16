@@ -29,7 +29,7 @@ export default function LeadsTable() {
   useEffect(() => {
     const fetchLeads = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/leads", {
+        const res = await axios.get("https://lead-management-dashboard-xi.vercel.app/api/leads/", {
           params: {
             search,
             stage,
