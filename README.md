@@ -17,19 +17,17 @@ A full-stack project with **Vite + React frontend** and **Node.js + Express back
 
 ### 1. Clone the repository
 
-git clone <your-repo-url>
-cd <your-repo-folder>
+git clone <https://github.com/RiteshRana25/lead-management-dashboard)>
+cd lead-management-dashboard
 
 ### 2. frontend setup
 
-cd lead-management-dashboard
 cd frontend
 npm install
 npm run dev
 
 ### 3. backend setup
 
-cd lead-management-dashboard
 cd backend
 npm install
 node server.js
@@ -41,7 +39,7 @@ MONGO_URI=mongodb+srv://riteshrana251104_db_user:Ltbo3I4d8EiSXS4h@cluster0.pn1rn
 
 ### 5. Database Seeding
 
-http://localhost:5000/api/leads/seed
+https://lead-management-dashboard-xi.vercel.app/api/leads/seed
 
 After visiting the link, you will see:
 
@@ -53,3 +51,5 @@ username:-admin    password:-1234
 
 ### 7. Deployment
 
+frontend-https://lead-management-dashboard-g6il.vercel.app/
+backend-https://lead-management-dashboard-xi.vercel.app/api/leads
