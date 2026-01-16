@@ -7,7 +7,7 @@ export default function Analytics() {
   useEffect(() => {
     const fetchLeads = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/leads", { params: { limit: 1000 } }); 
+        const res = await axios.get("https://lead-management-dashboard-xi.vercel.app/api/leads/", { params: { limit: 1000 } }); 
         const leads = res.data.leads;
         const converted = leads.filter((l) => l.stage === "Converted").length;
         const byStage = leads.reduce((acc, l) => {
