@@ -25,26 +25,31 @@ router.get("/seed", async (req, res) => {
 
 
 router.get("/", async (req, res) => {
-let { search = "", stage, sort = "createdAt_desc", page = 1, limit = 20 } = req.query;
-page = parseInt(page);
-limit = parseInt(limit);
+  try {
+    let { search = "", stage, sort = "createdAt_desc", page = 1, limit = 20 } = req.query;
+    page = parseInt(page);
+    limit = parseInt(limit);
 
-const query = {};
-if (search) query.name = { $regex: search, $options: "i" };
-if (stage) query.stage = stage;
+    const query = {};
+    if (search) query.name = { $regex: search, $options: "i" };
+    if (stage) query.stage = stage;
 
-let [sortField, sortOrder] = sort.split("_"); 
-sortOrder = sortOrder === "asc" ? 1 : -1;
+    let [sortField, sortOrder] = sort.split("_"); 
+    sortOrder = sortOrder === "asc" ? 1 : -1;
 
-const total = await Lead.countDocuments(query);
-const leads = await Lead.find(query)
-  .sort({ [sortField]: sortOrder })
-  .skip((page - 1) * limit)
-  .limit(limit);
+    const total = await Lead.countDocuments(query);
+    const leads = await Lead.find(query)
+      .sort({ [sortField]: sortOrder })
+      .skip((page - 1) * limit)
+      .limit(limit);
 
-res.json({ leads, total, page, pages: Math.ceil(total / limit) });
-
+    res.json({ leads, total, page, pages: Math.ceil(total / limit) });
+  } catch (err) {
+    console.error("Error fetching leads:", err);
+    res.status(500).json({ message: "Server error while fetching leads" });
+  }
 });
+
 
 router.get("/:id", async (req, res) => {
   try {
